@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
-    <parameter key="kernel.root_dir">/home/parmifer/development/OstPourpre/src</parameter>
-    <parameter key="kernel.project_dir">/home/parmifer/development/OstPourpre</parameter>
+    <parameter key="kernel.root_dir">F:\Crystale\documents\developpement\site-vitrine-ost-pourpre\src</parameter>
+    <parameter key="kernel.project_dir">F:\Crystale\documents\developpement\site-vitrine-ost-pourpre</parameter>
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.debug">true</parameter>
     <parameter key="kernel.name">src</parameter>
-    <parameter key="kernel.cache_dir">/home/parmifer/development/OstPourpre/var/cache/dev</parameter>
-    <parameter key="kernel.logs_dir">/home/parmifer/development/OstPourpre/var/log</parameter>
+    <parameter key="kernel.cache_dir">F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev</parameter>
+    <parameter key="kernel.logs_dir">F:\Crystale\documents\developpement\site-vitrine-ost-pourpre\var\log</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
         <parameter key="parent">null</parameter>
-        <parameter key="path">/home/parmifer/development/OstPourpre/vendor/symfony/framework-bundle</parameter>
+        <parameter key="path">F:\Crystale\documents\developpement\site-vitrine-ost-pourpre\vendor\symfony\framework-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\FrameworkBundle</parameter>
       </parameter>
     </parameter>
@@ -37,11 +37,11 @@
       <parameter key="gc_probability">1</parameter>
       <parameter key="use_strict_mode">true</parameter>
     </parameter>
-    <parameter key="session.save_path">/home/parmifer/development/OstPourpre/var/cache/dev/sessions</parameter>
+    <parameter key="session.save_path">F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/sessions</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="data_collector.templates" type="collection"/>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
-    <parameter key="debug.container.dump">/home/parmifer/development/OstPourpre/var/cache/dev/srcDevDebugProjectContainer.xml</parameter>
+    <parameter key="debug.container.dump">F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/srcDevDebugProjectContainer.xml</parameter>
     <parameter key="router.options.generator_class">Symfony\Component\Routing\Generator\UrlGenerator</parameter>
     <parameter key="router.options.generator_base_class">Symfony\Component\Routing\Generator\UrlGenerator</parameter>
     <parameter key="router.options.generator_dumper_class">Symfony\Component\Routing\Generator\Dumper\PhpGeneratorDumper</parameter>
@@ -150,14 +150,6 @@
       <argument>en</argument>
       <argument type="service" id="router.default" on-invalid="ignore"/>
     </service>
-    <service id="http_exception_listener" class="Symfony\Component\HttpKernel\EventListener\ExceptionListener" public="false">
-      <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" priority="-256"/>
-      <tag name="monolog.logger" channel="request"/>
-      <argument>null</argument>
-      <argument type="service" id="logger" on-invalid="null"/>
-      <argument>true</argument>
-      <argument>UTF-8</argument>
-    </service>
     <service id="validate_request_listener" class="Symfony\Component\HttpKernel\EventListener\ValidateRequestListener">
       <tag name="kernel.event_subscriber"/>
       <tag name="container.hot_path"/>
@@ -170,14 +162,6 @@
     <service id="event_dispatcher" class="Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher" public="true">
       <tag name="container.hot_path"/>
       <argument type="service" id="service_container"/>
-      <call method="addListener">
-        <argument>kernel.exception</argument>
-        <argument type="collection">
-          <argument type="service" id="http_exception_listener"/>
-          <argument>onKernelException</argument>
-        </argument>
-        <argument>-256</argument>
-      </call>
       <call method="addListener">
         <argument>kernel.response</argument>
         <argument type="collection">
@@ -259,6 +243,14 @@
         <argument>-1000</argument>
       </call>
       <call method="addListener">
+        <argument>kernel.finish_request</argument>
+        <argument type="collection">
+          <argument type="service" id="session_listener"/>
+          <argument>onFinishRequest</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.response</argument>
         <argument type="collection">
           <argument type="service" id="session.save_listener"/>
@@ -336,9 +328,9 @@
     <service id="filesystem" class="Symfony\Component\Filesystem\Filesystem" public="true"/>
     <service id="file_locator" class="Symfony\Component\HttpKernel\Config\FileLocator">
       <argument type="service" id="kernel"/>
-      <argument>/home/parmifer/development/OstPourpre/src/Resources</argument>
+      <argument>F:\Crystale\documents\developpement\site-vitrine-ost-pourpre\src/Resources</argument>
       <argument type="collection">
-        <argument>/home/parmifer/development/OstPourpre/src</argument>
+        <argument>F:\Crystale\documents\developpement\site-vitrine-ost-pourpre\src</argument>
       </argument>
     </service>
     <service id="uri_signer" class="Symfony\Component\HttpKernel\UriSigner">
@@ -467,46 +459,46 @@
     </service>
     <service id="cache.app" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" public="true">
       <tag name="cache.pool"/>
-      <argument>Ym-jTUnQwA</argument>
+      <argument>ISI-S79OF6</argument>
       <argument>0</argument>
-      <argument>/home/parmifer/development/OstPourpre/var/cache/dev/pools</argument>
+      <argument>F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/pools</argument>
       <call method="setLogger">
         <argument type="service" id="logger" on-invalid="ignore"/>
       </call>
     </service>
     <service id="cache.system" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="true">
       <tag name="cache.pool"/>
-      <argument>gZfsbGEDKx</argument>
+      <argument>65NqM2FsUu</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/parmifer/development/OstPourpre/var/cache/dev/pools</argument>
+      <argument>F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.validator" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
-      <argument>tWVSdJ09PQ</argument>
+      <argument>Cd7EJ1J0gi</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/parmifer/development/OstPourpre/var/cache/dev/pools</argument>
+      <argument>F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.serializer" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
-      <argument>sPeluefqwj</argument>
+      <argument>GsJMxMo6Nx</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/parmifer/development/OstPourpre/var/cache/dev/pools</argument>
+      <argument>F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.annotations" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
-      <argument>fDXKj7jOSk</argument>
+      <argument>07yc9savLu</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/parmifer/development/OstPourpre/var/cache/dev/pools</argument>
+      <argument>F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -516,7 +508,7 @@
       <argument></argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/parmifer/development/OstPourpre/var/cache/dev/pools</argument>
+      <argument>F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -545,7 +537,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>/home/parmifer/development/OstPourpre/var/cache/dev/pools</argument>
+      <argument>F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/pools</argument>
       <call method="setLogger">
         <argument type="service" id="logger" on-invalid="ignore"/>
       </call>
@@ -602,14 +594,14 @@
         <argument key="cache.annotations" type="service" id="cache.annotations" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
-    <service id="2_ServiceLocator~n_ibduh" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="2_ServiceLocator~jicpsti" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="session" type="service" id="session" on-invalid="ignore"/>
       </argument>
     </service>
-    <service id="1_NativeFileSessionHandler~n_ibduh" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler" public="false">
-      <argument>/home/parmifer/development/OstPourpre/var/cache/dev/sessions</argument>
+    <service id="1_NativeFileSessionHandler~jicpsti" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler" public="false">
+      <argument>F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/sessions</argument>
     </service>
     <service id="session" class="Symfony\Component\HttpFoundation\Session\Session" public="true">
       <argument type="service" id="session.storage.native"/>
@@ -632,12 +624,12 @@
     <service id="session.flash_bag" class="Symfony\Component\HttpFoundation\Session\Flash\FlashBag" public="false"/>
     <service id="session.attribute_bag" class="Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag" public="false"/>
     <service id="session.storage.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage" public="false">
-      <argument>/home/parmifer/development/OstPourpre/var/cache/dev/sessions</argument>
+      <argument>F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev/sessions</argument>
       <argument>MOCKSESSID</argument>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
     <service id="session.handler.native_file" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\StrictSessionHandler" public="false">
-      <argument type="service" id="1_NativeFileSessionHandler~n_ibduh"/>
+      <argument type="service" id="1_NativeFileSessionHandler~jicpsti"/>
     </service>
     <service id="session.handler.write_check" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\WriteCheckSessionHandler" public="false">
       <deprecated>The "%service_id%" service is deprecated since Symfony 3.4 and will be removed in 4.0. Use the `session.lazy_write` ini setting instead.</deprecated>
@@ -646,7 +638,8 @@
       <tag name="kernel.event_subscriber"/>
       <tag name="container.hot_path"/>
       <tag name="container.hot_path"/>
-      <argument type="service" id="2_ServiceLocator~n_ibduh"/>
+      <tag name="container.hot_path"/>
+      <argument type="service" id="2_ServiceLocator~jicpsti"/>
     </service>
     <service id="session.save_listener" class="Symfony\Component\HttpKernel\EventListener\SaveSessionListener">
       <tag name="kernel.event_subscriber"/>
@@ -733,7 +726,7 @@
       <argument type="service" id="service_container"/>
       <argument>kernel:loadRoutes</argument>
       <argument type="collection">
-        <argument key="cache_dir">/home/parmifer/development/OstPourpre/var/cache/dev</argument>
+        <argument key="cache_dir">F:/Crystale/documents/developpement/site-vitrine-ost-pourpre/var/cache/dev</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
         <argument key="generator_base_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
@@ -762,7 +755,6 @@
     <service id="router.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer" public="false">
       <tag name="container.service_subscriber" id="router"/>
       <tag name="kernel.cache_warmer"/>
-      <tag name="container.service_subscriber.locator" id="service_locator.lluwcxp.router.cache_warmer"/>
       <argument type="service" id="service_locator.lluwcxp.router.cache_warmer"/>
     </service>
     <service id="router_listener" class="Symfony\Component\HttpKernel\EventListener\RouterListener">
@@ -774,7 +766,7 @@
       <argument type="service" id="request_stack"/>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
       <argument type="service" id="logger" on-invalid="ignore"/>
-      <argument>/home/parmifer/development/OstPourpre</argument>
+      <argument>F:\Crystale\documents\developpement\site-vitrine-ost-pourpre</argument>
       <argument>true</argument>
     </service>
     <service id="Symfony\Bundle\FrameworkBundle\Controller\RedirectController" class="Symfony\Bundle\FrameworkBundle\Controller\RedirectController" public="true">
@@ -789,6 +781,24 @@
     <service id="service_locator.sr6ctxe" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
+    </service>
+    <service id="service_locator.w7xlwgx" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="inline" type="service" id="fragment.renderer.inline"/>
+      </argument>
+    </service>
+    <service id="logger" class="Symfony\Component\HttpKernel\Log\Logger" public="false"/>
+    <service id="service_locator.lluwcxp" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="router" type="service" id="router.default"/>
+      </argument>
+    </service>
+    <service id="service_locator.lluwcxp.router.cache_warmer" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <argument>router.cache_warmer</argument>
+      <argument type="service" id="service_container"/>
+      <factory service="service_locator.lluwcxp" method="withContext"/>
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <argument type="service" id="service_locator.dypztpe"/>
@@ -828,24 +838,6 @@
         <argument key="console.command.yaml_lint" type="service" id="console.command.yaml_lint"/>
       </argument>
     </service>
-    <service id="service_locator.w7xlwgx" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="inline" type="service" id="fragment.renderer.inline"/>
-      </argument>
-    </service>
-    <service id="logger" class="Symfony\Component\HttpKernel\Log\Logger" public="false"/>
-    <service id="service_locator.lluwcxp" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="router" type="service" id="router.default"/>
-      </argument>
-    </service>
-    <service id="service_locator.lluwcxp.router.cache_warmer" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <argument>router.cache_warmer</argument>
-      <argument type="service" id="service_container"/>
-      <factory service="service_locator.lluwcxp" method="withContext"/>
-    </service>
     <service id="Psr\Container\ContainerInterface" alias="service_container" public="false"/>
     <service id="Symfony\Component\DependencyInjection\ContainerInterface" alias="service_container" public="false"/>
     <service id="Symfony\Component\EventDispatcher\EventDispatcherInterface" alias="event_dispatcher" public="false"/>
@@ -873,6 +865,6 @@
     <service id="Symfony\Component\Routing\RequestContextAwareInterface" alias="router.default" public="false"/>
     <service id="Symfony\Component\Routing\RequestContext" alias="router.request_context" public="false"/>
     <service id="Psr\Log\LoggerInterface" alias="logger" public="false"/>
-    <service id="service_locator._fpuy7b" alias="2_ServiceLocator~n_ibduh" public="false"/>
+    <service id="service_locator._fpuy7b" alias="2_ServiceLocator~jicpsti" public="false"/>
   </services>
 </container>

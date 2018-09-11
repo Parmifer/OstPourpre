@@ -14,12 +14,12 @@ namespace Symfony\Flex;
 use Composer\Composer;
 use Composer\Console\Application;
 use Composer\DependencyResolver\Operation\InstallOperation;
-use Composer\DependencyResolver\Operation\UpdateOperation;
 use Composer\DependencyResolver\Operation\UninstallOperation;
+use Composer\DependencyResolver\Operation\UpdateOperation;
 use Composer\DependencyResolver\Pool;
 use Composer\Downloader\FileDownloader;
-use Composer\Factory;
 use Composer\EventDispatcher\EventSubscriberInterface;
+use Composer\Factory;
 use Composer\Installer;
 use Composer\Installer\InstallerEvent;
 use Composer\Installer\InstallerEvents;
@@ -30,12 +30,16 @@ use Composer\IO\IOInterface;
 use Composer\IO\NullIO;
 use Composer\Json\JsonFile;
 use Composer\Json\JsonManipulator;
+use Composer\Package\BasePackage;
+use Composer\Package\Comparer\Comparer;
 use Composer\Package\Locker;
 use Composer\Package\PackageInterface;
 use Composer\Plugin\PluginEvents;
 use Composer\Plugin\PluginInterface;
 use Composer\Plugin\PreFileDownloadEvent;
 use Composer\Repository\ComposerRepository as BaseComposerRepository;
+use Composer\Repository\RepositoryFactory;
+use Composer\Repository\RepositoryManager;
 use Composer\Script\Event;
 use Composer\Script\ScriptEvents;
 use Symfony\Component\Console\Input\ArgvInput;
@@ -101,6 +105,26 @@ class Flex implements PluginInterface, EventSubscriberInterface
 
         $rfs = Factory::createRemoteFilesystem($this->io, $this->config);
         $this->rfs = new ParallelDownloader($this->io, $this->config, $rfs->getOptions(), $rfs->isTlsDisabled());
+
+        $symfonyRequire = getenv('SYMFONY_REQUIRE') ?: ($composer->getPackage()->getExtra()['symfony']['require'] ?? null);
+
+        $manager = RepositoryFactory::manager($this->io, $this->config, $composer->getEventDispatcher(), $this->rfs);
+        $setRepositories = \Closure::bind(function (RepositoryManager $manager) use ($symfonyRequire) {
+            $manager->repositoryClasses = $this->repositoryClasses;
+            $manager->setRepositoryClass('composer', TruncatedComposerRepository::class);
+            $manager->repositories = $this->repositories;
+            $i = 0;
+            foreach (RepositoryFactory::defaultRepos(null, $this->config, $manager) as $repo) {
+                $manager->repositories[$i++] = $repo;
+                if ($repo instanceof TruncatedComposerRepository && $symfonyRequire) {
+                    $repo->setSymfonyRequire($symfonyRequire, $this->io);
+                }
+            }
+            $manager->setLocalRepository($this->getLocalRepository());
+        }, $composer->getRepositoryManager(), RepositoryManager::class);
+
+        $setRepositories($manager);
+        $composer->setRepositoryManager($manager);
         $this->configurator = new Configurator($composer, $io, $this->options);
         $this->downloader = new Downloader($composer, $io, $this->rfs);
         $this->downloader->setFlexId($this->getFlexId());
@@ -138,6 +162,8 @@ class Flex implements PluginInterface, EventSubscriberInterface
                 continue;
             }
 
+            // In Composer 1.0.*, $input knows about option and argument definitions
+            // Since Composer >=1.1, $input contains only raw values
             $input = $trace['args'][0];
             $app = $trace['object'];
 
@@ -156,7 +182,12 @@ class Flex implements PluginInterface, EventSubscriberInterface
             }
 
             if ('create-project' === $command) {
-                $input->setInteractive(false);
+                // detect Composer >=1.7 (using the Composer::VERSION constant doesn't work with snapshot builds)
+                if (class_exists(Comparer::class)) {
+                    $input->setOption('remove-vcs', true);
+                } else {
+                    $input->setInteractive(false);
+                }
             } elseif ('update' === $command) {
                 $this->displayThanksReminder = 1;
             }
@@ -172,12 +203,19 @@ class Flex implements PluginInterface, EventSubscriberInterface
                 }
             }
 
-            if ($input->hasOption('no-progress')) {
-                $this->progress = !$input->getOption('no-progress');
+            if ($input->hasParameterOption('--no-progress', true)) {
+                $this->progress = false;
             }
 
-            if ($input->hasOption('dry-run')) {
-                $this->dryRun = $input->getOption('dry-run');
+            if ($input->hasParameterOption('--dry-run', true)) {
+                $this->dryRun = true;
+            }
+
+            if ($input->hasParameterOption('--prefer-lowest', true)) {
+                // When prefer-lowest is set and no stable version has been released,
+                // we consider "dev" more stable than "alpha", "beta" or "RC". This
+                // allows testing lowest versions with potential fixes applied.
+                BasePackage::$stabilities['dev'] = 1 + BasePackage::STABILITY_STABLE;
             }
 
             $composerFile = Factory::getComposerFile();
@@ -262,8 +300,8 @@ class Flex implements PluginInterface, EventSubscriberInterface
         }
 
         if (2 === $this->displayThanksReminder) {
-            $love = '\\' === DIRECTORY_SEPARATOR ? 'love' : '💖 ';
-            $star = '\\' === DIRECTORY_SEPARATOR ? 'star' : '★ ';
+            $love = '\\' === \DIRECTORY_SEPARATOR ? 'love' : '💖 ';
+            $star = '\\' === \DIRECTORY_SEPARATOR ? 'star' : '★ ';
 
             $this->io->writeError('');
             $this->io->writeError('What about running <comment>composer global require symfony/thanks && composer thanks</> now?');
@@ -445,7 +483,7 @@ class Flex implements PluginInterface, EventSubscriberInterface
         $this->cacheDirPopulated = true;
 
         $downloads = [];
-        $cacheDir = rtrim($this->config->get('cache-files-dir'), '\/').DIRECTORY_SEPARATOR;
+        $cacheDir = rtrim($this->config->get('cache-files-dir'), '\/').\DIRECTORY_SEPARATOR;
         $getCacheKey = function (PackageInterface $package, $processedUrl) {
             return $this->getCacheKey($package, $processedUrl);
         };
@@ -507,6 +545,10 @@ class Flex implements PluginInterface, EventSubscriberInterface
             return;
         }
 
+        if (null === $this->downloader->getEndpoint()) {
+            throw new \LogicException('Cannot generate project id when "symfony/flex" is not found in the root composer.json.');
+        }
+
         $json = new JsonFile(Factory::getComposerFile());
         $manipulator = new JsonManipulator(file_get_contents($json->getPath()));
         $manipulator->addSubNode('extra', 'symfony.id', $this->downloader->get('/ulid')->getBody()['ulid']);
@@ -517,6 +559,11 @@ class Flex implements PluginInterface, EventSubscriberInterface
 
     private function fetchRecipes(): array
     {
+        if (null === $this->downloader->getEndpoint()) {
+            $this->io->writeError('<warning>Symfony recipes are disabled: "symfony/flex" not found in the root composer.json</warning>');
+
+            return [[], []];
+        }
         $devPackages = null;
         $data = $this->downloader->getRecipes($this->operations);
         $manifests = $data['manifests'] ?? [];
@@ -636,7 +683,7 @@ class Flex implements PluginInterface, EventSubscriberInterface
                 continue;
             }
 
-            if (!preg_match('#^https\?://#', $repo['url'])) {
+            if (!preg_match('#^http(s\??)?://#', $repo['url'])) {
                 continue;
             }
 

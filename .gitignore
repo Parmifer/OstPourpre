@@ -1,7 +1,4 @@
-
-###> symfony/web-server-bundle ###
 /.web-server-pid
-###< symfony/web-server-bundle ###
 /app/config/parameters.yml
 /build/
 /phpunit.xml

@@ -12,9 +12,9 @@ class MainController extends Controller
      */
     public function AccueilAction()
     {
-        return $this->render('AppBundle:Main:accueil.html.twig', array(
-            // ...
-        ));
+        return $this->render('main/accueil.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
     }
 
     /**
@@ -22,9 +22,9 @@ class MainController extends Controller
      */
     public function OrganisationAction()
     {
-        return $this->render('AppBundle:Main:organisation.html.twig', array(
-            // ...
-        ));
+        return $this->render('main/organisation.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
     }
 
     /**
@@ -32,9 +32,9 @@ class MainController extends Controller
      */
     public function LieuxDeVieAction()
     {
-        return $this->render('AppBundle:Main:lieux-de-vie.html.twig', array(
-            // ...
-        ));
+        return $this->render('main/lieux-de-vie.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
     }
 
     /**
@@ -42,9 +42,9 @@ class MainController extends Controller
      */
     public function OnRechercheAction()
     {
-        return $this->render('AppBundle:Main:on-recherche.html.twig', array(
-            // ...
-        ));
+        return $this->render('main/on-recherche.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
     }
 
     /**
@@ -52,9 +52,9 @@ class MainController extends Controller
      */
     public function AmbassadeAction()
     {
-        return $this->render('AppBundle:Main:ambassade.html.twig', array(
-            // ...
-        ));
+        return $this->render('main/ambassade.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
     }
 
 }

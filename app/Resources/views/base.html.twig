@@ -11,7 +11,7 @@
         <script src="{{ asset('javascript/library/bootstrap.bundle.min.js') }}"></script>
     </head>
     <body>
-{#        {% block body %}{% endblock %}#}
+
         <div class="container-fluid">
             <div id="guild-intro" class="jumbotron jumbotron-fluid">
                 <div class="container">
@@ -120,8 +120,14 @@
 
         </header>
 
+        <div class="separator-lg"></div>
+
+        {% block body %}{% endblock %}
+
+        <div class="separator-lg"></div>
+
         <footer>
-            <nav class="nav justify-content-center nav-justified">
+            <nav class="nav justify-content-center nav-justified bg-light">
                 <a
                     class="nav-item nav-link"
                     target="_blank"
@@ -136,7 +142,7 @@
                     >
                     Ce site est réalisé sous Licence AGPL V3
                 </a>
-                <a 
+                <a
                     class="nav-item nav-link"
                     target="_blank"
                     href="https://github.com/Parmifer/OstPourpre"

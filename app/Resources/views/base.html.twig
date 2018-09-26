@@ -20,7 +20,7 @@
                     <p class="lead">Créée en octobre 2007 sur le serveur Confrérie du Thorium, l'<strong>Ost Pourpre</strong> est une guilde roleplay dont l'objectif est la reconquête du royaume de Lordaeron.</p>
                 </div>
                 <div class="container text-center">
-                    <a 
+                    <a
                         class="btn btn-primary btn-lg"
                         target="_blank"
                         href="http://www.raxxon.com/ostpourpre/joomla/index.php/la-guilde/recrutement/35-quelques-conseils-pour-bien-postuler"
@@ -36,25 +36,25 @@
             <nav class="navbar navbar-expand-lg top-navbar navbar-dark bg-primary" data-toggle="sticky-onscroll">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="">Ost Pourpre <span class="sr-only">(page courante)</span></a>
-                    <button 
+                    <button
                         aria-label="Ouvrir le menu"
                         class="navbar-toggler"
-                        type="button" 
-                        data-toggle="collapse" 
-                        data-target="#main-horizontal-navbar" 
-                        aria-controls="main-horizontal-navbar" 
-                        aria-expanded="false" 
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#main-horizontal-navbar"
+                        aria-controls="main-horizontal-navbar"
+                        aria-expanded="false"
                         >
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div 
+                    <div
                         id="main-horizontal-navbar"
-                        class="collapse navbar-collapse justify-content-end" 
+                        class="collapse navbar-collapse justify-content-end"
                         >
                         <ul class="navbar-nav pull-right">
                             <li class="nav-item dropdown">
-                                <a 
+                                <a
                                     class="nav-link dropdown-toggle"
                                     href=""
                                     id="guildlife-navbar-dropdown"
@@ -69,26 +69,26 @@
                                     class="dropdown-menu dropdown-menu-right"
                                     aria-labelledby="guildlife-navbar-dropdown"
                                     >
-                                    <a 
+                                    <a
                                         class="dropdown-item"
                                         href="{{ path('organisation') }}"
                                         >
                                         Organisation
                                     </a>
-                                    <a 
+                                    <a
                                         class="dropdown-item"
                                         href="{{ path('lieux-de-vie') }}"
                                         >
                                         Lieux de vie
                                     </a>
-                                    <a 
+                                    <a
                                         class="dropdown-item"
                                         href="#"
                                         >
                                         Évènements
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a 
+                                    <a
                                         class="dropdown-item"
                                         href="{{ path('on-recherche') }}"
                                         >
@@ -97,7 +97,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a 
+                                <a
                                     class="nav-link"
                                     href="{{ path('ambassade') }}"
                                     >
@@ -105,7 +105,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a 
+                                <a
                                     class="nav-link"
                                     href="#"
                                     >
@@ -120,7 +120,31 @@
 
         </header>
 
-
+        <footer>
+            <nav class="nav justify-content-center nav-justified">
+                <a
+                    class="nav-item nav-link"
+                    target="_blank"
+                    href="http://www.raxxon.com/ostpourpre/joomla/index.php/la-guilde/29-qui-sommes-nous"
+                    >
+                    À propos
+                </a>
+                <a
+                    class="nav-item nav-link"
+                    target="_blank"
+                    href="https://www.gnu.org/licenses/agpl-3.0.en.html"
+                    >
+                    Ce site est réalisé sous Licence AGPL V3
+                </a>
+                <a 
+                    class="nav-item nav-link"
+                    target="_blank"
+                    href="https://github.com/Parmifer/OstPourpre"
+                    >
+                    Voir le code source
+                </a>
+            </nav>
+        </footer>
 
         <script src="{{ asset('javascript/base.js') }}"></script>
         {% block javascripts %}{% endblock %}

@@ -3,5 +3,54 @@
 {% block title %}AppBundle:Main:Accueil{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Main:Accueil page</h1>
+    <div id="cartes-principales-activites" class="container-fluid">
+        <div class="card-deck">
+            <div class="card col-md-6 ml-5 mr-4">
+                <img class="card-img-top" src="{{ asset('images/icons/hierarchie.svg') }}" alt="Card image cap">
+                <div class="card-body text-center d-flex flex-column">
+                    <h4 class="card-title text-center">Organisation</h4>
+                    <p class="card-text text-justify">
+                        L'<strong>Ost Pourpre</strong> est une or&shy;ga&shy;ni&shy;sa&shy;tion mi&shy;li&shy;taire.
+                    </p>
+                    <p class="card-text text-justify">
+                        En ce sens, elle est sou&shy;mi&shy;se à une hié&shy;rar&shy;chie bien éta&shy;blie et à une stricte dis&shy;ci&shy;pli&shy;ne, qui lui per&shy;met&shy;tent de struc&shy;tu&shy;rer son action sur tous les champs de ba&shy;taille d'Azeroth, mais é&shy;ga&shy;le&shy;ment à la Garnison du Ruisseau de l'Ouest, qu'elle oc&shy;cu&shy;pe de&shy;puis sa fon&shy;da&shy;tion.
+                    </p>
+                    <a href="#" class="btn btn-primary mt-auto">En apprendre plus</a>
+                </div>
+            </div>
+            <div class="card col-md-6 ml-5 mr-5">
+                <img class="card-img-top" src="{{ asset('images/icons/garnison.svg') }}" alt="Card image cap">
+                <div class="card-body text-center d-flex flex-column">
+                    <h4 class="card-title text-center">Lieu de vie</h4>
+                    <p class="card-text text-justify">
+                        Nichée dans la partie oc&shy;ci&shy;den&shy;tale de la Forêt d'Elwynn, à deux pas du pont menant à la Marche de l'Ouest, la Gar&shy;ni&shy;son du Ruisseau de l'Ouest est, depuis plus de quatre ans, le siège de l'<strong>Ost Pourpre</strong>.
+                    </p>
+                    <p class="card-text text-justify">
+                        Il s'agit d'un bâ&shy;ti&shy;ment austè&shy;re et mar&shy;tial, dont l'ac&shy;cès ne se fait que par une hau&shy;te por&shy;te gar&shy;dée nuit et jour par un es&shy;ca&shy;dron de sen&shy;ti&shy;nelles.
+                    </p>
+                    <a href="#" class="btn btn-primary mt-auto">En apprendre plus</a>
+                </div>
+            </div>
+            <div class="card col-md-6 ml-4 mr-5">
+                <img class="card-img-top" src="{{ asset('images/icons/tableau.svg') }}" alt="Card image cap">
+                <div class="card-body text-center d-flex flex-column">
+                    <h5 class="card-title text-center">On recherche</h5>
+                    <p class="card-text text-justify">
+                        Dans la salle com&shy;mune, à la vue de tous les ha&shy;bi&shy;tants de la Garnison, se trou&shy;ve un fa&shy;meux ta&shy;bleau d'af&shy;fi&shy;cha&shy;ge qui per&shy;met à la di&shy;rec&shy;tion de l'or&shy;dre de trans&shy;met&shy;tre les in&shy;for&shy;ma&shy;tions offi&shy;cielles et autres notes de service.
+                    </p>
+                    <p class="card-text text-justify">
+                        Il s'y trouve éga&shy;le&shy;ment un encart spé&shy;ci&shy;fi&shy;que portant un nom re&shy;la&shy;ti&shy;ve&shy;ment clair pour qui a de bon&shy;nes no&shy;tions de com&shy;mun&nbsp;:
+                    </p>
+                    <p class="card-text text-center">
+                        &laquo;&nbsp;Bourse à l'Emploi&nbsp;&raquo;
+                    </p>
+                    <a href="#" class="btn btn-primary mt-auto">S'engager</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/main/accueil.css') }}">
 {% endblock %}

@@ -1,4 +1,47 @@
-/*sticky header position*/
+/* ---------------------------------------- */
+/* ------- Édition du thème de base ------- */
+/* ---------------------------------------- */
+/* Ajout du background */
+body
+{
+    background-image: url('/images/background.jpg');
+    background-color: #eee1c1;
+}
+/* Coins carrés */
+.card,
+.btn-lg,
+.btn-sm
+{
+    border-radius: 0px;
+}
+
+
+/* ---------------------------------------- */
+/* --------- Classes utilitaires ---------- */
+/* ---------------------------------------- */
+/* Séparateurs */
+.separator-lg
+{
+    height: 120px;
+}
+.separator-md
+{
+    height: 80px;
+}
+.separator-sm
+{
+    height: 40px;
+}
+.separator-xs
+{
+    height: 20px;
+}
+
+
+/* ---------------------------------------- */
+/* ------- CSS divers propre au site ------ */
+/* ---------------------------------------- */
+/* Top menu qui stick quand l'utilisateurice scroll */
 .sticky.is-sticky
 {
     position: fixed;
@@ -9,14 +52,20 @@
     width: 100%;
 }
 
+/* Intro de la guilde, premier élément présent dans la page d'accueil */
 #guild-intro
 {
     margin-top: 50px;
     background-color: transparent;
     font: 18px/1.5 sans-serif;
 }
-
 #guild-intro .btn
 {
     margin-top: 30px;
+}
+
+/* Descriptions courtes des principales pages, seconde section de la page d'accueil */
+.card-text
+{
+    hyphens: manual;
 }

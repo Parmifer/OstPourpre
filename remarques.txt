@@ -1,0 +1,7 @@
+- Texte de la page d'accueil plus petit
+
+- Parchemin plus large sur grand écran
+
+- Liste des news sur page d'accueil
+
+

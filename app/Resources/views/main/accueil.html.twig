@@ -1,8 +1,21 @@
 {% extends "base.html.twig" %}
 
-{% block title %}AppBundle:Main:Accueil{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
+    <div id="guilde-intro-longue" class="container-fluid">
+        <div class="container">
+            <div class="container parchemin">
+                <p class="lead">En jeu, vous pouvez nous retrouver à la Main de Tyr, dans les Maleterres de l’Est, un endroit que nous avons baptisé, non sans symbolique, le « Beffroi du Nord ».</p>
+                <p class="lead">Sur ce site, vous pourrez découvrir notre organisation, les fiches personnages de nos membres (à venir), le plan de notre quartier général, nos ambassades et, bien entendu, notre actualité (à venir) !</p>
+                <p class="lead">Vous aurez également accès à notre forum, sur lequel nous avons pris l’habitude de rassembler tous nos échanges sur les parties de jeu de rôle en cours et de mettre au point nos futurs évènements – sans oublier, évidemment, les actes de candidature !</p>
+                <p class="lead">Au plaisir de vous retrouver prochainement, en jeu ou sur notre forum.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="separator-md"></div>
+
     <div id="cartes-principales-activites" class="container-fluid">
         <div class="card-deck">
             <div class="card col-md-6 ml-5 mr-4">
@@ -13,22 +26,19 @@
                         L'<strong>Ost Pourpre</strong> est une or&shy;ga&shy;ni&shy;sa&shy;tion mi&shy;li&shy;taire.
                     </p>
                     <p class="card-text text-justify">
-                        En ce sens, elle est sou&shy;mi&shy;se à une hié&shy;rar&shy;chie bien éta&shy;blie et à une stricte dis&shy;ci&shy;pli&shy;ne, qui lui per&shy;met&shy;tent de struc&shy;tu&shy;rer son action sur tous les champs de ba&shy;taille d'Azeroth, mais é&shy;ga&shy;le&shy;ment à la Garnison du Ruisseau de l'Ouest, qu'elle oc&shy;cu&shy;pe de&shy;puis sa fon&shy;da&shy;tion.
+                        En ce sens, elle est sou&shy;mi&shy;se à une hié&shy;rar&shy;chie bien éta&shy;blie et à une stricte dis&shy;ci&shy;pli&shy;ne, qui lui per&shy;met&shy;tent de struc&shy;tu&shy;rer son action sur tous les champs de ba&shy;taille d'Azeroth, mais é&shy;ga&shy;le&shy;ment au Beffroi du Nord, son quar&shy;ti&shy;er gé&shy;né&shy;ral dans les Male&shy;terres de l’Est.
                     </p>
-                    <a href="#" class="btn btn-primary mt-auto">En apprendre plus</a>
+                    <a href="{{ path('organisation') }}" class="btn btn-primary mt-auto">En apprendre plus</a>
                 </div>
             </div>
             <div class="card col-md-6 ml-5 mr-5">
                 <img class="card-img-top" src="{{ asset('images/icons/garnison.svg') }}" alt="Card image cap">
                 <div class="card-body text-center d-flex flex-column">
-                    <h4 class="card-title text-center">Lieu de vie</h4>
+                    <h4 class="card-title text-center">Lieu de vie</h4>                    
                     <p class="card-text text-justify">
-                        Nichée dans la partie oc&shy;ci&shy;den&shy;tale de la Forêt d'Elwynn, à deux pas du pont menant à la Marche de l'Ouest, la Gar&shy;ni&shy;son du Ruisseau de l'Ouest est, depuis plus de quatre ans, le siège de l'<strong>Ost Pourpre</strong>.
+                        TEXTE A DEFINIR
                     </p>
-                    <p class="card-text text-justify">
-                        Il s'agit d'un bâ&shy;ti&shy;ment austè&shy;re et mar&shy;tial, dont l'ac&shy;cès ne se fait que par une hau&shy;te por&shy;te gar&shy;dée nuit et jour par un es&shy;ca&shy;dron de sen&shy;ti&shy;nelles.
-                    </p>
-                    <a href="#" class="btn btn-primary mt-auto">En apprendre plus</a>
+                    <a href="{{ path('lieux-de-vie') }}" class="btn btn-primary mt-auto">En apprendre plus</a>
                 </div>
             </div>
             <div class="card col-md-6 ml-4 mr-5">
@@ -44,7 +54,7 @@
                     <p class="card-text text-center">
                         &laquo;&nbsp;Bourse à l'Emploi&nbsp;&raquo;
                     </p>
-                    <a href="#" class="btn btn-primary mt-auto">S'engager</a>
+                    <a href="{{ path('on-recherche') }}" class="btn btn-primary mt-auto">S'engager</a>
                 </div>
             </div>
         </div>

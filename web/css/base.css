@@ -1,6 +1,16 @@
 /* ---------------------------------------- */
 /* ------- Édition du thème de base ------- */
 /* ---------------------------------------- */
+/* Ajout de la font Cardinal */
+@font-face {
+    font-family: "Cardinal";
+    src: url("/font/Cardinal.eot");
+    src:
+    url("/font/Cardinal.svg") format("svg"),
+    url("/font/Cardinal.ttf") format("truetype"),
+    url("/font/Cardinal.woff") format("woff"),
+    url("/font/Cardinal.woff2") format("woff2");
+}
 /* Ajout du background */
 body
 {
@@ -15,6 +25,11 @@ body
     border-radius: 0px;
 }
 
+/* Élements de la navbar */
+
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+    color: rgba(255,255,255);
+}
 
 /* ---------------------------------------- */
 /* --------- Classes utilitaires ---------- */
@@ -37,6 +52,66 @@ body
     height: 20px;
 }
 
+/* Effet parchemin des articles */
+.parchemin
+{
+    background-size: contain !important;
+    background: 
+        url("/images/parchemin_header.png") top no-repeat,
+        url("/images/parchemin_footer.png") bottom no-repeat,
+        url("/images/parchemin_milieu.png") repeat-y;        
+    padding: 50px;
+}
+
+.parchemin h1
+{
+    font-family: Cardinal;
+    font-size: 55px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.parchemin h1,
+.parchemin h2,
+.parchemin h3,
+.parchemin h4,
+.parchemin h5,
+.parchemin h6
+{    
+    color: #aa3089;
+}
+
+/* Couleur du texte dorée */
+.text-gold,
+.text-gold > span
+{
+    color: #EFDE4B;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fbf9a8), to(#D3B335));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-gold-outline
+{
+    /*text-shadow: 0 0 black;*/
+    position: relative;
+}
+
+.text-gold-outline:after
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: attr(data-text);
+    background: none;
+    text-shadow: -1px 0 #876222, 0 1px #876222, 1px 0 #876222, 0 -1px #876222, 6px 6px 6px rgba(0, 0, 0, 0.33);
+    z-index: -1;
+}
+
+/* Fonte Cardinal */
+.font-cardinal {
+    font-family: Cardinal;
+}
 
 /* ---------------------------------------- */
 /* ------- CSS divers propre au site ------ */
@@ -57,7 +132,17 @@ body
 {
     margin-top: 50px;
     background-color: transparent;
-    font: 18px/1.5 sans-serif;
+}
+#guild-intro h1
+{
+    font-size: 65px;
+}
+#guild-intro .lead
+{
+    color: white;
+    font-size: 30px;
+    font-family: Quicksand;
+    text-shadow: 6px 6px 6px rgba(0, 0, 0, 0.33);
 }
 #guild-intro .btn
 {

@@ -46,15 +46,34 @@ class MainController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
-
+    
     /**
-     * @Route("/ambassade", name="ambassade")
+     * @Route("/qui-sommes-nous", name="qui-sommes-nous")
      */
-    public function AmbassadeAction()
+    public function QuiSommesNousAction()
     {
-        return $this->render('main/ambassade.html.twig', [
+        return $this->render('main/qui-sommes-nous.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
 
+    /**
+     * @Route("/fils-du-nord", name="fils-du-nord")
+     */
+    public function FilsDuNordAction()
+    {
+        return $this->render('main/fils-du-nord.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
+    
+    /**
+     * @Route("/a-propos", name="a-propos")
+     */
+    public function AProposAction()
+    {
+        return $this->render('main/a-propos.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
 }

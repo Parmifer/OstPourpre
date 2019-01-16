@@ -16,9 +16,20 @@
         <div class="container-fluid">
             <div id="guild-intro" class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4">&laquo;&nbsp;Les cloches sonneront de nouveau à Lordaeron&nbsp;&raquo;</h1>
+                    <h1 
+                        class="display-4 text-gold text-gold-outline font-cardinal"
+                        data-text="&laquo;&nbsp;Les cloches sonneront de nouveau à Lordaeron&nbsp;&raquo;"
+                        >
+                        <span>&laquo;&nbsp;Les </span>
+                        <span>cloches </span>
+                        <span>sonneront </span>
+                        <span>de </span>
+                        <span>nouveau </span>
+                        <span>à </span>
+                        <span>Lordaeron&nbsp;&raquo;</span>
+                    </h1>
                     <hr class="my-4">
-                    <p class="lead">Créée en octobre 2007 sur le serveur Confrérie du Thorium, l'<strong>Ost Pourpre</strong> est une guilde roleplay dont l'objectif est la reconquête du royaume de Lordaeron.</p>
+                    <p class="lead">Créée en octobre 2007 sur le serveur Confrérie du Thorium, l'<strong>Ost&nbsp;Pourpre</strong> est une guilde roleplay dont l'objectif est la reconquête du royaume de Lordaeron  et de l’ensemble des royaumes du Nord.</p>                    
                 </div>
                 <div class="container text-center">
                     <a
@@ -36,7 +47,7 @@
         <header >
             <nav class="navbar navbar-expand-lg top-navbar navbar-dark bg-primary" data-toggle="sticky-onscroll">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="">
+                    <a class="navbar-brand" href="{{ path('accueil') }}">
                         <img src="{{ asset('images/logo.png') }}" width="30" height="30" class="d-inline-block align-top" alt="Logo de l'Ost Pourpre">
                         Ost Pourpre <span class="sr-only">(page courante)</span>
                     </a>
@@ -57,6 +68,14 @@
                         class="collapse navbar-collapse justify-content-end"
                         >
                         <ul class="navbar-nav pull-right">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ path('qui-sommes-nous') }}"
+                                    >
+                                    Qui sommes nous ?
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a
                                     class="nav-link dropdown-toggle"
@@ -103,19 +122,19 @@
                             <li class="nav-item">
                                 <a
                                     class="nav-link"
-                                    href="{{ path('ambassade') }}"
+                                    href="{{ path('fils-du-nord') }}"
                                     >
-                                    Ambassade
+                                    Fils du Nord
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {#<li class="nav-item">
                                 <a
                                     class="nav-link"
                                     href="#"
                                     >
                                     Gallerie
                                 </a>
-                            </li>
+                            </li>#}
                         </ul>
 
                     </div>
@@ -124,18 +143,18 @@
 
         </header>
 
-        <div class="separator-lg"></div>
+        <div class="separator-md"></div>
 
         {% block body %}{% endblock %}
 
-        <div class="separator-lg"></div>
+        <div class="separator-md"></div>
 
         <footer>
             <nav class="nav justify-content-center nav-justified bg-light">
                 <a
                     class="nav-item nav-link"
                     target="_blank"
-                    href="http://www.raxxon.com/ostpourpre/joomla/index.php/la-guilde/29-qui-sommes-nous"
+                    href="{{ path('a-propos') }}"
                     >
                     À propos
                 </a>
